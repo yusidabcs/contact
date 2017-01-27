@@ -1,0 +1,34 @@
+{
+	"name": "bcscoder/contact",
+	"description": "",
+    "type": "asgard-module",
+    "require": {
+        "php": ">=5.4",
+        "composer/installers": "~1.0",
+        "asgardcms/core-module": "~1.0",
+        "google/recaptcha": "~1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "orchestra/testbench": "~3.1"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Contact\\": ".",
+            "Modules\\": "Modules/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+	"authors": [
+		{
+			"name": "Bcodes",
+			"email": "info@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Modules\\Contact\\": ""
+		}
+	}
+}
