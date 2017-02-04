@@ -1,6 +1,7 @@
 <?php namespace Modules\Contact\Http\Controllers;
 
 
+use Illuminate\Support\Facades\Mail;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use Modules\Contact\Entities\Contact;
@@ -36,7 +37,13 @@ class ContactController extends AdminBaseController
             $resp = $recaptcha->verify($gRecaptchaResponse, $request->server('REMOTE_ADDR'));
             if ($resp->isSuccess()) {
                 
-                $this->contact->create($request->all());    
+                $contact = $this->contact->create($request->all());
+
+                Mail::send('emails.contact', ['contact' => $contact], function ($m) use ($contact) {
+
+                    $m->to(setting('contact::email'), setting('contact::name'))->subject(setting('contact::subject'));
+                });
+
                 flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
                 return redirect()->back();
             } else {        
@@ -47,7 +54,12 @@ class ContactController extends AdminBaseController
 
         }else{
 
-            $this->contact->create($request->all());    
+            $contact = $this->contact->create($request->all());
+
+            Mail::send('emails.contact', ['contact' => $contact], function ($m) use ($contact) {
+
+                $m->to(setting('contact::email'), setting('contact::name'))->subject(setting('contact::subject'));
+            });
             
             flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
             

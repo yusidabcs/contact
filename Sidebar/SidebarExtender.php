@@ -1,8 +1,10 @@
 <?php namespace Modules\Contact\Sidebar;
 
+use Maatwebsite\Sidebar\Badge;
 use Maatwebsite\Sidebar\Group;
 use Maatwebsite\Sidebar\Item;
 use Maatwebsite\Sidebar\Menu;
+use Modules\Contact\Repositories\ContactRepository;
 use Modules\Core\Contracts\Authentication;
 
 class SidebarExtender implements \Maatwebsite\Sidebar\SidebarExtender
@@ -34,6 +36,10 @@ class SidebarExtender implements \Maatwebsite\Sidebar\SidebarExtender
                 $item->icon('fa fa-comments');
                 $item->weight(7);
                 $item->route('admin.contact.contact.index');
+                $item->badge(function (Badge $badge, ContactRepository $contacts) {
+                    $badge->setClass('bg-green');
+                    $badge->setValue($contacts->pendingMessage());
+                });
                 $item->authorize(
                     $this->auth->hasAccess('contact.contacts.index')
                 );

@@ -5,4 +5,6 @@ use Modules\Core\Repositories\BaseRepository;
 interface ContactRepository extends BaseRepository
 {
     public function main();
+
+    public function pendingMessage();
 }
