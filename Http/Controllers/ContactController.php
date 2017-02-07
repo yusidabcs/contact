@@ -40,7 +40,7 @@ class ContactController extends AdminBaseController
                 $contact = $this->contact->create($request->all());
 
                 Mail::send('emails.contact', ['contact' => $contact], function ($m) use ($contact) {
-
+                    $m->from($contact->email,$contact->first_name);
                     $m->to(setting('contact::email'), setting('contact::name'))->subject(setting('contact::subject'));
                 });
 
@@ -57,8 +57,9 @@ class ContactController extends AdminBaseController
             $contact = $this->contact->create($request->all());
 
             Mail::send('emails.contact', ['contact' => $contact], function ($m) use ($contact) {
-
+                $m->from($contact->email,$contact->first_name);
                 $m->to(setting('contact::email'), setting('contact::name'))->subject(setting('contact::subject'));
+
             });
             
             flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
