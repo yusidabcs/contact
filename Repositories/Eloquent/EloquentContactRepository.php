@@ -20,7 +20,7 @@ class EloquentContactRepository extends EloquentBaseRepository implements Contac
 			'reply_to' => $model->id,
 			]);
         //mail send
-		$rs = Mail::send('contact::email', ['reply' => $reply], function ($m) use ($model) {
+		$rs = Mail::send('emails.contact', ['contact' => $reply], function ($m) use ($model) {
             $m->from(setting('contact::email'), setting('contact::name'));
             $m->to($model->email, $model->first_name)->subject(setting('contact::subject'));
         });
