@@ -19,7 +19,7 @@ class Contact extends Model
 
     public function scopeMain($query)
     {
-        return $query->where('reply_to', null);
+        return $query->where('reply_to', null)->orWhere('reply_to', 0)->orderBy('created_at','desc');
     }
 
     public function replys()

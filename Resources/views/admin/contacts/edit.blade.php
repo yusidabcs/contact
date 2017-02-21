@@ -77,7 +77,7 @@
                                     <tr>
                                         <td>Message</td>
                                         <td>:</td>
-                                        <td>{{ $contact->last_replys->message }}</td>
+                                        <td>{!! $contact->last_replys->message !!}</td>
                                     </tr>
                                     <tr>
                                         <td>Created at</td>

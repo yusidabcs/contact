@@ -30,6 +30,9 @@ class EloquentContactRepository extends EloquentBaseRepository implements Contac
 
 	public function pendingMessage()
     {
-        return $this->model->where('reply_to',0)->orWhere('reply_to',null)->count();
+        return $this->model->where('read',0)
+            ->Where(function ($query) {
+                $query->where('reply_to',0)->orWhere('reply_to',null);
+            })->count();
     }
 }

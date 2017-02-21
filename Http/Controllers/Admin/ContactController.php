@@ -65,6 +65,10 @@ class ContactController extends AdminBaseController
      */
     public function edit(Contact $contact)
     {
+        if($contact->read == 0){
+            $contact->read = 1;
+            $contact->save();
+        }
         return view('contact::admin.contacts.edit', compact('contact'));
     }
 

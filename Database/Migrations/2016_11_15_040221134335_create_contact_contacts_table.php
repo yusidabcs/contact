@@ -20,7 +20,8 @@ class CreateContactContactsTable extends Migration
             $table->string('last_name');
             $table->string('phone');
             $table->text('message');
-            $table->integer('reply_to');
+            $table->integer('reply_to')->default(0);
+            $table->tinyInteger('read')->default(0);
             // Your fields
             $table->timestamps();
 		});

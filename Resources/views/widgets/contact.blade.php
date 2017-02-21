@@ -3,7 +3,7 @@
     <div class="info-box-content">
     <span class="info-box-text">
         New Contact
-    </span>
+    </span></a>
         <span class="info-box-number">{{ $total }}</span>
     </div>
     <!-- /.info-box-content -->
