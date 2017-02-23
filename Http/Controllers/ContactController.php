@@ -48,7 +48,7 @@ class ContactController extends AdminBaseController
                 return redirect()->back();
             } else {        
                 
-                flash()->error(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
+                flash()->error('Security message error.');
                 return redirect()->back();
             }
 
@@ -61,12 +61,23 @@ class ContactController extends AdminBaseController
                 $m->to(setting('contact::email'), setting('contact::name'))->subject(setting('contact::subject'));
 
             });
-            
+
             flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
-            
+
             return redirect()->back();
         }
-        
+
+    }
+
+    public function custom()
+    {
+        $rs = Mail::send('emails.message', ['data' => request()->all()], function ($m){
+            $m->from(request()->get('email'), request()->get('first_name').' '.request()->get('last_name'));
+            $m->to(setting('core::email'))->subject(setting('core::site-name').' - New message');
+        });
+        flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
+
+        return redirect()->back();
     }
 
   

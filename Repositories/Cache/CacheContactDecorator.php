@@ -14,6 +14,19 @@ class CacheContactDecorator extends BaseCacheDecorator implements ContactReposit
 
     public function main()
     {
-        // TODO: Implement main() method.
+
+        return $this->cache
+            ->tags($this->entityName, 'global')
+            ->remember("{$this->locale}.{$this->entityName}.main", $this->cacheTime,
+                function () {
+                    return $this->repository->main();
+                }
+            );
+
+    }
+
+    public function pendingMessage()
+    {
+        return $this->repository->pendingMessage();
     }
 }

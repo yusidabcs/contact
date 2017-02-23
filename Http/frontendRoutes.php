@@ -9,4 +9,9 @@ if (! App::runningInConsole()) {
         'uses' => 'ContactController@post',
         'as' => 'contact.send',
     ]);
+
+    $router->post('custom-message', [
+        'uses' => 'ContactController@custom',
+        'as' => 'contact.custom'
+    ]);
 }
