@@ -73,7 +73,7 @@ class ContactController extends AdminBaseController
     {
         $rs = Mail::send('emails.message', ['data' => request()->all()], function ($m){
             $m->from(request()->get('email'), request()->get('first_name').' '.request()->get('last_name'));
-            $m->to(setting('core::email'))->subject(setting('core::site-name').' - New message');
+            $m->to(setting(setting('contact::email'))->subject(setting('core::site-name').' - New message');
         });
 
         return redirect()->back()
