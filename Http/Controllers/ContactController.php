@@ -30,7 +30,7 @@ class ContactController extends AdminBaseController
      */
     public function post(Request $request)
     {
-
+        $request->merge(['phone' => '+'.$request->get('country_code').$request->get('phone')]);
     	if(setting('contact::security') == 1){
             $recaptcha = new ReCaptcha(setting('contact::site-secret'));
             $gRecaptchaResponse = $request->get('g-recaptcha-response');
@@ -49,7 +49,7 @@ class ContactController extends AdminBaseController
             } else {        
                 
                 flash()->error('Security message error.');
-                return redirect()->back();
+                return redirect()->back()->withInput();
             }
 
         }else{
@@ -75,9 +75,9 @@ class ContactController extends AdminBaseController
             $m->from(request()->get('email'), request()->get('first_name').' '.request()->get('last_name'));
             $m->to(setting('core::email'))->subject(setting('core::site-name').' - New message');
         });
-        flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
 
-        return redirect()->back();
+        return redirect()->back()
+                ->with('message',trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
     }
 
   
