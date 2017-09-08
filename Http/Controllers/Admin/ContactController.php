@@ -52,9 +52,8 @@ class ContactController extends AdminBaseController
     {
         $this->contact->create($request->all());
 
-        flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
-
-        return redirect()->route('admin.contact.contact.index');
+        return redirect()->route('admin.contact.contact.index')
+            ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
     }
 
     /**
@@ -83,9 +82,8 @@ class ContactController extends AdminBaseController
     {
         $this->contact->update($contact, $request->all());
 
-        flash()->success(trans('core::core.messages.resource updated', ['name' => trans('contact::contacts.title.contacts')]));
-
-        return redirect()->route('admin.contact.contact.index');
+        return redirect()->route('admin.contact.contact.index')
+            ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('contact::contacts.title.contacts')]));
     }
 
     /**
@@ -98,8 +96,7 @@ class ContactController extends AdminBaseController
     {
         $this->contact->destroy($contact);
 
-        flash()->success(trans('core::core.messages.resource deleted', ['name' => trans('contact::contacts.title.contacts')]));
-
-        return redirect()->route('admin.contact.contact.index');
+        return redirect()->route('admin.contact.contact.index')
+            ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('contact::contacts.title.contacts')]));
     }
 }

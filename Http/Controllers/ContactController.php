@@ -30,7 +30,7 @@ class ContactController extends AdminBaseController
      */
     public function post(Request $request)
     {
-        $request->merge(['phone' => '+'.$request->get('country_code').$request->get('phone')]);
+
     	if(setting('contact::security') == 1){
             $recaptcha = new ReCaptcha(setting('contact::site-secret'));
             $gRecaptchaResponse = $request->get('g-recaptcha-response');
@@ -43,13 +43,11 @@ class ContactController extends AdminBaseController
                     $m->from($contact->email,$contact->first_name);
                     $m->to(setting('contact::email'), setting('contact::name'))->subject(setting('contact::subject'));
                 });
-
-                flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
-                return redirect()->back();
-            } else {        
-                
-                flash()->error('Security message error.');
-                return redirect()->back()->withInput();
+                return redirect()->back()
+                    ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
+            } else {
+                return redirect()->back()
+                    ->withError('Security message error.');
             }
 
         }else{
@@ -62,9 +60,8 @@ class ContactController extends AdminBaseController
 
             });
 
-            flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
-
-            return redirect()->back();
+            return redirect()->back()
+                ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
         }
 
     }
@@ -73,11 +70,11 @@ class ContactController extends AdminBaseController
     {
         $rs = Mail::send('emails.message', ['data' => request()->all()], function ($m){
             $m->from(request()->get('email'), request()->get('first_name').' '.request()->get('last_name'));
-            $m->to(setting('contact::email'))->subject(setting('core::site-name').' - New message');
+            $m->to(setting('core::email'))->subject(setting('core::site-name').' - New message');
         });
 
         return redirect()->back()
-                ->with('message',trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
+            ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
     }
 
   

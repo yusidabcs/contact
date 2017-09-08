@@ -11,8 +11,5 @@
         "Modules\\Contact\\Providers\\RouteServiceProvider"
     ],
     "aliases": [],
-    "files": [],
-    "widgets": [
-        "Modules\\Contact\\Widgets\\ContactWidget"
-    ]
+    "files": []
 }

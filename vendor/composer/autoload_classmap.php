@@ -17,4 +17,5 @@ return array(
     'Modules\\Contact\\Repositories\\ContactRepository' => $baseDir . '/Repositories/ContactRepository.php',
     'Modules\\Contact\\Repositories\\Eloquent\\EloquentContactRepository' => $baseDir . '/Repositories/Eloquent/EloquentContactRepository.php',
     'Modules\\Contact\\Sidebar\\SidebarExtender' => $baseDir . '/Sidebar/SidebarExtender.php',
+    'Modules\\Contact\\Widgets\\ContactWidget' => $baseDir . '/Widgets/ContactWidget.php',
 );

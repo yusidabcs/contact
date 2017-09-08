@@ -2,12 +2,11 @@
 
 return [
     'contact.contacts' => [
-        'index',
-        'create',
-        'store',
-        'edit',
-        'update',
-        'destroy',
+        'index' => 'contact::contacts.list resource',
+        'create' => 'contact::contacts.create resource',
+        'edit' => 'contact::contacts.edit resource',
+        'update' => 'contact::contacts.edit resource',
+        'destroy' => 'contact::contacts.destroy resource',
     ],
 // append
 
