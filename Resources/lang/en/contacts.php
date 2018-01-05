@@ -21,4 +21,8 @@ return [
     ],
     'validation' => [
     ],
+    'list resource' => 'List contact',
+    'create resource' => 'Create contact',
+    'edit resource' => 'Edit contact',
+    'destroy resource' => 'Delete contact',
 ];

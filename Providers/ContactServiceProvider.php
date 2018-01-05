@@ -1,9 +1,11 @@
 <?php namespace Modules\Contact\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\Core\Traits\CanPublishConfiguration;
 
 class ContactServiceProvider extends ServiceProvider
 {
+    use CanPublishConfiguration;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -20,7 +22,14 @@ class ContactServiceProvider extends ServiceProvider
     {
         $this->registerBindings();
     }
+    public function boot()
+    {
+        $this->publishConfig('contact', 'config');
+        $this->publishConfig('contact', 'permissions');
+        $this->publishConfig('contact', 'settings');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
+    }
     /**
      * Get the services provided by the provider.
      *
