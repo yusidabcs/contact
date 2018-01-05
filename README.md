@@ -1,17 +1,17 @@
-#Contact Module Asgardcms
-##Instalasi
+# Contact Module Asgardcms
+## Instalasi
     composer require bcscoder/contact
 
-###1. Activate permission from setting page.
-###2. Config Recaptcha
+1. Activate permission from setting page.
+2. Config Recaptcha
 login and create new website to : https://www.google.com/recaptcha
 
 Input your site key and secret key to Setting > Contact
 
-###3. Add Recaptcha Js
+3. Add Recaptcha Js
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
-#How to use
+## How to use
 Create form for contact us and add sample code below
 
     {!! Form::open( ['url' => route('contact.send'), 'method' => 'post'] ) !!}
