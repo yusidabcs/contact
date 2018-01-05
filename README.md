@@ -15,7 +15,7 @@ Input your site key and secret key to Setting > Contact
 Create form for contact us and add sample code below
 
     {!! Form::open( ['url' => route('contact.send'), 'method' => 'post'] ) !!}
-    
+
 add recaptcha
 
     @if(setting('contact::security') == 1)
@@ -24,10 +24,12 @@ add recaptcha
             <div class="g-recaptcha" data-sitekey="{{ setting('contact::site-key') }}"></div>
         </div>
     @endif
-    
+
 Required field
 1. `first_name`
 2. `last_name`
 3. `email`
 4. `phone`
 5. `message`
+
+don't forget to add contact.blade.php into resource/views/emails directory

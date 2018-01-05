@@ -38,6 +38,7 @@ class ComposerStaticInita25a91bd54942268a3d75c76bd46c570
         'Modules\\Contact\\Repositories\\ContactRepository' => __DIR__ . '/../..' . '/Repositories/ContactRepository.php',
         'Modules\\Contact\\Repositories\\Eloquent\\EloquentContactRepository' => __DIR__ . '/../..' . '/Repositories/Eloquent/EloquentContactRepository.php',
         'Modules\\Contact\\Sidebar\\SidebarExtender' => __DIR__ . '/../..' . '/Sidebar/SidebarExtender.php',
+        'Modules\\Contact\\Widgets\\ContactWidget' => __DIR__ . '/../..' . '/Widgets/ContactWidget.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

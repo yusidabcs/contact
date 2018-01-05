@@ -43,13 +43,11 @@ class ContactController extends AdminBaseController
                     $m->from($contact->email,$contact->first_name);
                     $m->to(setting('contact::email'), setting('contact::name'))->subject(setting('contact::subject'));
                 });
-
-                flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
-                return redirect()->back();
-            } else {        
-                
-                flash()->error('Security message error.');
-                return redirect()->back();
+                return redirect()->back()
+                    ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
+            } else {
+                return redirect()->back()
+                    ->withError('Security message error.');
             }
 
         }else{
@@ -62,9 +60,8 @@ class ContactController extends AdminBaseController
 
             });
 
-            flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
-
-            return redirect()->back();
+            return redirect()->back()
+                ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
         }
 
     }
@@ -75,9 +72,9 @@ class ContactController extends AdminBaseController
             $m->from(request()->get('email'), request()->get('first_name').' '.request()->get('last_name'));
             $m->to(setting('core::email'))->subject(setting('core::site-name').' - New message');
         });
-        flash()->success(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
 
-        return redirect()->back();
+        return redirect()->back()
+            ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('contact::contacts.title.contacts')]));
     }
 
   
