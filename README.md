@@ -1,5 +1,5 @@
 #Contact Module Asgardcms
-##Instalasi
+##Instalation
     composer require bcscoder/contact
 
 ###1. Activate permission from setting page.
@@ -7,6 +7,8 @@
 login and create new website to : https://www.google.com/recaptcha
 
 Input your site key and secret key to Setting > Contact
+and also input your input your contact email, contact name and Contact Subject
+don't forget to configure your email configuration in .env file
 
 ###3. Add Recaptcha Js
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -31,5 +33,3 @@ Required field
 3. `email`
 4. `phone`
 5. `message`
-
-don't forget to add contact.blade.php into resource/views/emails directory

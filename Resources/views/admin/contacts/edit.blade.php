@@ -21,18 +21,18 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <div class="tab-content">
-
+                    
                     <table class="table">
-
+                        
                         <thead>
-
+                            
                         </thead>
 
                         <tbody>
                             <tr>
                                 <td>Name</td>
                                 <td>:</td>
-                                <td>{{ $contact->first_name }} {{ $contact->last_name }}</td>
+                                <td>{{ $contact->first_name }} {{ $contact->lasr_name }}</td>
                             </tr>
 
                             <tr>
@@ -63,7 +63,7 @@
         <div class="col-md-12">
             <div class="nav-tabs-custom">
                 <div class="tab-content">
-
+                    
                     @if($contact->last_replys)
                     <div class="box box-primary">
                         <div class="box-header">
